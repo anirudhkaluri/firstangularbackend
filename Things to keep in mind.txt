@@ -1,0 +1,18 @@
+
+
+Node packages used:
+express
+nodemon
+mongoose
+jsonwebtoken
+dotenv
+
+
+Node middleware used:
+express.json()
+express.urlencoded()
+Routing
+
+
+Things to remember:
+Export the Models

@@ -16,7 +16,11 @@ app.use('/profile',profileRouter);
 
 const PORT=process.env.PORT||8000;
 
-const dbURI=process.env.db_connection;
+//const dbURI=process.env.db_connection.toString();
+
+const dbURI="mongodb+srv://anirudhkaluri:anirudhisgreat@nodeapps.yx4jxxr.mongodb.net/firstangular?retryWrites=true&w=majority";
+
+console.log("THE DB URI is",dbURI);
 
 async function connectDB(){
     try{

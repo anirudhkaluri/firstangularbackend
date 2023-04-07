@@ -16,3 +16,4 @@ Routing
 
 Things to remember:
 Export the Models
+.js files of the Models must be named after the model

@@ -6,7 +6,7 @@ const login_user=async (req,res)=>{
     const userDetails=req.body;
     let user=await getUser(userDetails.user_name);
     if(user){
-        if(comparePassword(user,userDetails)){
+        if(comparePassword(user.password,userDetails.password)){
             const token=generate_token(user._id);
             return res.json({userExists:true,jwt:token});
         }
@@ -32,6 +32,12 @@ const register_user=async (req,res)=>{
     user=await createUser(userDetails);
     const token=generate_token(user._id);
     return res.json({userExists:false,jwt:token});
+}
+
+const comparePassword=(storedPassword,enteredPassword)=>{
+    if(storedPassword===enteredPassword)
+        return true;
+    return false;
 }
 
 

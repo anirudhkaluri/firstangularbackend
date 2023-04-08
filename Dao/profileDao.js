@@ -1,8 +1,13 @@
-const {User}=require('User');
+const User=require('../Models/user');
 
 const getUser=async (uname)=>{
-    const user=await User.findOne({user_name:uname});
-    return user;
+    try{
+        const user=await User.findOne({user_name:uname});
+        return user;
+    }
+    catch(error){
+        console.log("error while fetching user",error);
+    }
 }
 
 

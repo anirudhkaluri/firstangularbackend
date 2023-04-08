@@ -1,5 +1,4 @@
 const {generate_token}=require('./authServices');
-const {User}=require('../Models/user');
 const {getUser}=require('../Dao/profileDao');
 
 const login_user=async (req,res)=>{

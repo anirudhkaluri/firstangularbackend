@@ -3,14 +3,21 @@ const app=new express();
 const dotenv=require('dotenv');
 dotenv.config();
 const mongoose=require('mongoose');
-
-
-
-const profileRouter=require('./Routes/profileRoutes');
+const cors=require('cors');
 
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(cors,{
+    origin:[
+       ' http://localhost:4200',
+       'localhost:4200'
+
+    ],
+    credentials:true
+});
+
+const profileRouter=require('./Routes/profileRoutes');
 app.use('/profile',profileRouter);
 
 

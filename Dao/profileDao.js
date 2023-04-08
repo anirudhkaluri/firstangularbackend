@@ -6,8 +6,12 @@ const getUser=async (uname)=>{
 }
 
 
-
+const createUser=async(userDetails)=>{
+    const user= await User.create(userDetails);
+    return user;
+}
 
 module.exports={
-    getUser
+    getUser,
+    createUser
 }

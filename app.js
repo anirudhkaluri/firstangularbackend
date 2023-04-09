@@ -4,6 +4,7 @@ const dotenv=require('dotenv');
 dotenv.config();
 const mongoose=require('mongoose');
 const profileRouter=require('./Routes/profileRoutes');
+const blogRouter=require('./Routes/profileRoutes');
 
 
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(cors({
 }));
 
 app.use('/profile',profileRouter);
+app.use('/blog',blogRouter);
 
 
 

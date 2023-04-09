@@ -15,18 +15,18 @@ const generate_token=(uid)=>{
 
 
 const verify_token=(req,res,next)=>{
-
+    console.log('i am in verify token');
     const auth_header=req.headers['authorization'];
     const token=auth_header && auth_header.split(' ')[1];
 
     if(token===null)
         return res.status(401).json({isLogin:false});
 
-    jwt.verify(token,process.env.TOKEN_KEY.toString(),(err,user)=>{
+    jwt.verify(token,process.env.TOKEN_KEY.toString(),(err,data)=>{
         if(err)
             return res.status(403).json({isLogin:false});
         else{
-            req.user=user;
+            req.user=data.user;
             res.locals.isLogin=true;
         }
     });

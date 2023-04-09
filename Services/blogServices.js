@@ -4,9 +4,13 @@ const Blog=require('../Models/blog');
 
 
 const add_blog=async(req,res)=>{
-    const blog_details=req.body;
-    blog_details.user=req.user;
-    const blog=await Blog.save(blog_details);
+
+    const blog=await Blog.create({
+        user:req.user,
+        blog_title:req.body.blog_title,
+        blog_content:req.body.blog_content
+    }
+    );
     return res.json(blog);
 }
 
@@ -33,12 +37,20 @@ const get_my_blogs=async (req,res)=>{
     }
 }
 
-const delete_blog=(req,res)=>{
-
+const delete_blog=async (req,res)=>{
+    const blogid=req.params.id;
+    const result=await Blog.findByIdAndDelete(blogid);
+    res.json({deleted:true});
 }
 
-const modify_blog=(req,res)=>{
-
+const modify_blog=async (req,res)=>{
+    const blogid=req.params.id;
+    const result=await Blog.updateOne({_id:blogid},{
+        user:req.user,
+        blog_title:req.body.blog_title,
+        blog_content:req.body.blog_content
+    });
+    res.json({updated:true});
 }
 
 module.exports={

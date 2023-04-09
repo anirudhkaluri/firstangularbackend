@@ -22,7 +22,7 @@ const verify_token=(req,res,next)=>{
     if(token===null)
         return res.status(401).json({isLogin:false});
 
-    jwt.verify(token,process.env.TOKEN_key.toString(),(err,user)=>{
+    jwt.verify(token,process.env.TOKEN_KEY.toString(),(err,user)=>{
         if(err)
             return res.status(403).json({isLogin:false});
         else{

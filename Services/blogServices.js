@@ -1,7 +1,7 @@
 
 const User=require('../Models/user');
 const Blog=require('../Models/blog');
-
+const mongoose=require('mongoose');
 
 const add_blog=async(req,res)=>{
 
@@ -38,18 +38,23 @@ const get_my_blogs=async (req,res)=>{
 }
 
 const delete_blog=async (req,res)=>{
-    const blogid=req.params.id;
+    const blogid=req.params.blog_id;
     const result=await Blog.findByIdAndDelete(blogid);
     res.json({deleted:true});
 }
 
 const modify_blog=async (req,res)=>{
-    const blogid=req.params.id;
-    const result=await Blog.updateOne({_id:blogid},{
+    const blogid=req.params.blog_id;
+    console.log(`the blog id is ${blogid}`);
+ 
+    const update={
         user:req.user,
         blog_title:req.body.blog_title,
         blog_content:req.body.blog_content
-    });
+    };
+    const filter={_id:new mongoose.Types.ObjectId(blogid)};
+    const result=await Blog.findOneAndUpdate(filter,update);
+    console.log(`RESULT IS ${result}`);
     res.json({updated:true});
 }
 

@@ -2,7 +2,7 @@ const {generate_token}=require('./authServices');
 const {getUser,createUser}=require('../Dao/profileDao');
 
 const login_user=async (req,res)=>{
-    
+    console.log("I am in login");
     const userDetails=req.body;
     let user=await getUser(userDetails.user_name);
     if(user){
